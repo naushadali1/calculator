@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class MyButton extends StatelessWidget {
+class MyButton extends StatefulWidget {
   final String title;
   final Color colors;
   final VoidCallback onpress;
@@ -12,19 +12,24 @@ class MyButton extends StatelessWidget {
       required this.onpress});
 
   @override
+  State<MyButton> createState() => _MyButtonState();
+}
+
+class _MyButtonState extends State<MyButton> {
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 2),
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
         child: InkWell(
-          onTap: onpress,
+          onTap: widget.onpress,
           child: Container(
             height: 50,
             decoration: BoxDecoration(
-                color: colors, borderRadius: BorderRadius.circular(7)),
+                color: widget.colors, borderRadius: BorderRadius.circular(7)),
             child: Center(
                 child: Text(
-              title,
+              widget.title,
               style: const TextStyle(color: Colors.white),
             )),
           ),
